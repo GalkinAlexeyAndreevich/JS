@@ -17,3 +17,12 @@
     height: 75px;
     background-color: red;
 }
+.ex7{
+    margin-bottom: 30px;
+}
+.square8{
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    background-color: red;
+}
