@@ -1,24 +1,26 @@
+// "use strict"
 let text = document.body.querySelector(".text") 
 let on = document.body.querySelector(".on")
-let off = document.body.querySelector(".off") 
+let pause = document.body.querySelector(".pause")
+let offPause = document.body.querySelector(".offpause") 
 let input = document.body.querySelector(".input")
-let proverka = false
 let time
 on.addEventListener("click",()=>{
-    if(proverka){
-        num = num1
-    }
-    else{num = input.value}
+    num = parseInt(input.value)
     clearInterval(time)
     time = setInterval(time1,1000)   
 })
-off.addEventListener("click",()=>{
-    num1 = num
-    proverka = true
+pause.addEventListener("click",()=>{
     clearInterval(time)
+    num1 = num    
+})
+offPause.addEventListener("click",()=>{
+    clearInterval(time)
+    num = num1
+    time = setInterval(time1,1000)
 })   
 function time1(){
-    if(num == 0){
+    if(num === 0){
       clearInterval(time)
     }
       text.textContent = num
