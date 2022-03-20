@@ -7,7 +7,7 @@ function createAppTitle(){
     return appTitle;
 }
 
-function createTodoForm(){
+function createTodoItemForm(){
     const form = document.createElement('form');
     const input = document.createElement('input');
     const addButton = document.createElement('button');
@@ -89,5 +89,5 @@ function createTodoItem(){
 
 }
 createAppTitle();
-createTodoForm();
+createTodoItemForm();
 createTodoList();
