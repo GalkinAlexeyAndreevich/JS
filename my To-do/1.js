@@ -1,9 +1,10 @@
 const container = document.querySelector(".container")
-function createAppTitle(){
+const container1 = document.querySelector(".container1")
+const container2 = document.querySelector(".container2")
+function createAppTitle(title){
     const appTitle = document.createElement('h1');
-    appTitle.innerHTML = "To-do";
+    appTitle.innerHTML = title;
     appTitle.style.textAlign = "center"
-    container.append(appTitle)
     return appTitle;
 }
 
@@ -13,10 +14,9 @@ function createTodoItemForm(){
     const addButton = document.createElement('button');
     const div = document.createElement('div');
 
-    addButton.disabled = !input.value.length;
-
+    addButton.disabled = true
     input.addEventListener('input', () => {
-        if (input.value.length ==0){
+        if (input.value.length == 0){
           addButton.disabled = true   
         }
         else{addButton.disabled = ""}
@@ -32,62 +32,99 @@ function createTodoItemForm(){
     addButton.textContent = 'Добавить дело';
     addButton.type = "button"
     addButton.addEventListener("click", ()=>{
+        addButton.disabled = true
         createTodoItem()
-        console.log(input.value)
     })
+
 
     div.append(addButton);
     form.append(input);
     form.append(div);
-    container.append(form)
 
-    return form, input, addButton
+    return {
+        form,
+        input,
+        addButton
+    }
 }
 function createTodoList(){
     const list = document.createElement('ul');
     list.classList.add("ul")
     list.classList.add('list-group');
     list.style.listStyleType = "none"
-    container.append(list)
+    return list
 }
 
-function createTodoItem(){
-    const input = document.querySelector(".input")
-    const list = document.querySelector(".ul")
+function createTodoItem(input_value){
     const todoItem = document.createElement('li');
+    const divBtn = document.createElement('div');
+    const doneBtn = document.createElement('button');
+    const deleteBtn = document.createElement('button');
+    
+    // const input = document.querySelector(".input")
+    // const list = document.querySelector(".ul")
+    
+    
+    
     todoItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
 
-    todoItem.textContent = input.value
-    list.append(todoItem)
-    input.value = null
+    todoItem.textContent = input_value
+    // list.append(todoItem)
+    // input.value = null
     
-    createBtn()
-    function createBtn(){
-        const divBtn = document.createElement('div');
-        const doneBtn = document.createElement('button');
-        const deleteBtn = document.createElement('button');
 
-        doneBtn.classList.add('btn', 'btn-success');
-        deleteBtn.classList.add('btn', 'btn-danger');
 
-        doneBtn .textContent = "Готово"
-        deleteBtn.textContent = "Удалить"
-        divBtn.append(doneBtn, deleteBtn);
-        todoItem.append(divBtn);
+    doneBtn.classList.add('btn', 'btn-success');
+    deleteBtn.classList.add('btn', 'btn-danger');
 
-        deleteBtn.addEventListener("click", ()=>{
-            if (confirm("Вы уверены, что хотите удалить запись?")){
-                todoItem.remove()
-            }
-        })
+    doneBtn .textContent = "Готово"
+    deleteBtn.textContent = "Удалить"
 
-        doneBtn.addEventListener('click', ()=>{
-            todoItem.classList.toggle('list-group-item-success');
-        })
+    divBtn.append(doneBtn);
+    divBtn.append(deleteBtn);
+    todoItem.append(divBtn);
+
+    deleteBtn.addEventListener("click", ()=>{
+        if (confirm("Вы уверены, что хотите удалить запись?")){
+            todoItem.remove()
+        }
+    })
+
+    doneBtn.addEventListener('click', ()=>{
+        todoItem.classList.toggle('list-group-item-success');
+    })
+
+    return {
+        todoItem,
+        doneBtn,
+        deleteBtn,
+        divBtn
     }
-    return
 
 }
-createAppTitle();
-createTodoItemForm();
-createTodoList();
+function createTodoApp(container, title) {
+    const appTitle = createAppTitle(title);
+    const appForm = createTodoItemForm();
+    const appList = createTodoList();
+
+    container.append(appTitle, appForm.form, appList);
+
+    appForm.form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const todoItem = createTodoItem(appForm.input.value);
+        // todoItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+
+        if (appForm.input.value.length == 0){
+            appForm.addButton.disabled = true   
+        }
+        else{
+            appForm.addButton.disabled = ""
+        }
+        appList.append(todoItem.todoItem);
+        appForm.input.value = '';
+    })
+}
+createTodoApp(container, "My To-do")
+createTodoApp(container1, "Sister To-do")
+createTodoApp(container2, "Dad To-do")
