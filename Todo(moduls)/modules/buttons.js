@@ -1,7 +1,7 @@
 "use strict"
 import {changeItemDone} from "./changeColor.js"
 
-export function doneTodoItem(btn,item){
+export function doneTodoItem(btn,item,localArr,key =""){
     btn.addEventListener('click', ()=>{
         localArr = JSON.parse(localStorage.getItem(key));
         item.classList.toggle('list-group-item-success');
@@ -10,7 +10,7 @@ export function doneTodoItem(btn,item){
         localStorage.setItem(key, JSON.stringify(localArr))
     })
 }
-export function deleteTodoItem(btn,item){
+export function deleteTodoItem(btn,item,localArr, key =""){
     btn.addEventListener("click", ()=>{
         if (confirm("Вы уверены, что хотите удалить запись?")){
             localArr = JSON.parse(localStorage.getItem(key));

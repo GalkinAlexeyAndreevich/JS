@@ -1,4 +1,4 @@
-export function createTodoItem(input_value){
+export function createTodoItem(input_value = ""){
     const todoItem = document.createElement('li');
     const divBtn = document.createElement('div');
     const doneBtn = document.createElement('button');

@@ -4,6 +4,7 @@ import {createTodoItemForm} from "./form.js"
 import {createTodoList} from "./list.js"
 import {createTodoItem} from "./item.js"
 import {doneTodoItem,deleteTodoItem} from "./buttons.js"
+import {createItemObject} from "./createItemObj.js"
 
 function createTodoApp(container, title,localArr, key) {
     const appTitle = createAppTitle(title);
@@ -25,8 +26,8 @@ function createTodoApp(container, title,localArr, key) {
                 todoItem.todoItem.classList.remove('list-group-item-success') 
             }
 
-            doneTodoItem(todoItem.doneBtn,todoItem.todoItem)
-            deleteTodoItem(todoItem.deleteBtn,todoItem.todoItem)
+            doneTodoItem(todoItem.doneBtn,todoItem.todoItem,localArr,key)
+            deleteTodoItem(todoItem.deleteBtn,todoItem.todoItem,localArr,key)
 
         appList.append(todoItem.todoItem)
         todoItem.todoItem.append(todoItem.divBtn)
@@ -40,20 +41,12 @@ function createTodoApp(container, title,localArr, key) {
             return
         }
 
-        doneTodoItem(todoItem.doneBtn,todoItem.todoItem)
-        deleteTodoItem(todoItem.deleteBtn,todoItem.todoItem)
+        doneTodoItem(todoItem.doneBtn,todoItem.todoItem,localArr,key)
+        deleteTodoItem(todoItem.deleteBtn,todoItem.todoItem,localArr,key)
 
         localArr = JSON.parse(localStorage.getItem(key)) || localArr
 
-        function createItemObject(arr){
-        const obj = {}
-        obj.id = todoItem.todoItem.id
-        obj.name = appForm.input.value
-        obj.done = false
-        arr.push(obj)
-        }
-
-        createItemObject(localArr)
+        createItemObject(localArr,todoItem.todoItem,appForm.input.value)
 
         localStorage.setItem(key, JSON.stringify(localArr))
         console.log(JSON.parse(localStorage.getItem(key)))
