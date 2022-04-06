@@ -1,0 +1,17 @@
+.title{
+    text-align: center;
+}
+.container{
+    display: grid;
+    justify-items: center;
+    gap: 30px;
+    /* max-width: m-content; */
+}
+.line{
+    display: flex;
+    gap: 30px;
+}
+.btnNum{
+    width: 40px;
+    height: 40px;
+}
