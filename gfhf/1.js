@@ -3,7 +3,7 @@ let massNum = []
 let randomArray = []
 let kolvo
 let repaired
-let po
+let povtor = 0
 let n = 4
 createCard()
 let allBtn = document.querySelectorAll(".btnNum")
@@ -57,23 +57,45 @@ function createCard(){
         div.append(card)
         }
     }
-
+    let btnClear = document.createElement("button")
+    btnClear.textContent = "очистить"
+    btnClear.addEventListener('click', ()=>{
+        let allBtn = document.querySelectorAll(".btnNum")
+        for(let text of allBtn){
+            text.textContent = "Js"
+            povtor = 0
+        }
+    })
+    container.append(btnClear)
 
 }
 
 container.addEventListener('click',(e)=>{
     let item = e.target.closest(".btnNum")
-    
-    console.log(item)
+
     for(let i = 0; i<allBtn.length;i++){
         if(item == allBtn[i]){
-            item.textContent = randomArray[i] 
-            repaired = randomArray[i] 
-            console.log(repaired)
-            kolvo++
+            if(repaired == randomArray[i] && povtor == 1){
+                console.log("повтор числа")
+                item.textContent = randomArray[i] 
+                povtor = 0
+                repaired = 0
+            }
+            else if(repaired != randomArray[i] && povtor == 1){
+                console.log("разные числа")
+            }
+            else{
+                item.textContent = randomArray[i] 
+                repaired = randomArray[i] 
+                povtor ++
+                console.log(povtor)
+                console.log(repaired) 
+            }
+           
+
         }
     }
-    
+
 })
 
 console.log("начальный массив " + createRandomNumber(massNum, n))
