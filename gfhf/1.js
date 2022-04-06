@@ -2,7 +2,11 @@ const container = document.querySelector(".container")
 let massNum = []
 let randomArray = []
 let kolvo
+let repaired
+let po
 let n = 4
+createCard()
+let allBtn = document.querySelectorAll(".btnNum")
 function createRandomNumber(mass, n){
     for(let i=0; i<n; i++){
         let num = Math.round(Math.random()*100)
@@ -59,12 +63,16 @@ function createCard(){
 
 container.addEventListener('click',(e)=>{
     let item = e.target.closest(".btnNum")
+    
     console.log(item)
-    if(item){
-        item.textContent = "2"
-        kolvo++
+    for(let i = 0; i<allBtn.length;i++){
+        if(item == allBtn[i]){
+            item.textContent = randomArray[i] 
+            repaired = randomArray[i] 
+            console.log(repaired)
+            kolvo++
+        }
     }
-
     
 })
 
@@ -72,10 +80,5 @@ console.log("начальный массив " + createRandomNumber(massNum, n))
 // console.log("рандомный массив " + RandArr(massNum,randomArray))
 randomArray = RandArr(massNum,randomArray)
 console.log(randomArray)
-createCard()
-let allBtn = document.querySelectorAll(".btnNum")
-for(let i = 0; i<randomArray.length;i++){
-    console.log("изменение текста")
-    allBtn[i].textContent=randomArray[i] 
-}
+
 console.log(container)
