@@ -5,8 +5,12 @@ let repaired
 let povtor
 let n = 8
 let time;
-createCard()
+massNum =  createNumber(massNum, n)
+randomArray = RandArr(massNum)
+console.log(RandArr(massNum))
+createCard(n)
 let allBtn = document.querySelectorAll(".btnNum")
+
 function createNumber(mass, n){
     for(let i=0; i<n; i++){
         let num = i
@@ -14,8 +18,7 @@ function createNumber(mass, n){
     }
     return mass
 }
-massNum =  createNumber(massNum, n)
-console.log(massNum)
+
 function RandArr(mass){
 	for(let i=mass.length-1; i>0;i--){
 		let j = Math.floor(Math.random()*(i+1))
@@ -26,33 +29,15 @@ function RandArr(mass){
 	}
 	return mass
 }
-console.log(RandArr(massNum))
-randomArray = RandArr(massNum)
-//massNum = RandArr(massNum)
-//console.log(massNum)
-/*function massFilter(mass, num){
-    let proverka = false
-    let newArr = []
-    for(let check of mass){
-        if(check==num && proverka == false){
-            proverka = true
-            continue
-        }
-        else{
-           newArr.push(check) 
-        }
-        
-    }
-    return newArr
-}
-*/
-function createCard(){
-    for(let i =0; i<4; i++){
+
+
+function createCard(n){
+    for(let i =0; i<n/2; i++){
         let div = document.createElement("div")
         div.classList.add("line")
         container.append(div)
 
-        for(let i =0; i<4; i++){
+        for(let i =0; i<n/2; i++){
         let card = document.createElement("button")
         card.classList.add("btnNum")
         card.textContent = "Js"
@@ -65,12 +50,14 @@ function createCard(){
         let allBtn = document.querySelectorAll(".btnNum")
         for(let text of allBtn){
             text.textContent = "Js"
+            text.disabled = null
             povtor = 0
         }
     })
     container.append(btnClear)
 
 }
+
 container.addEventListener('click',(e)=>{
     let item = e.target.closest(".btnNum")
     for(let i = 0; i<allBtn.length;i++){
@@ -81,11 +68,10 @@ container.addEventListener('click',(e)=>{
                 for(let i = 0; i<allBtn.length; i++){
                     allBtn[i].disabled = true
                 }
-                console.log(povtor)
+
 				if(item.textContent == povtor.textContent){
-					console.log("одинаковые числа")
                     for(let i = 0; i<allBtn.length; i++){
-                        if(allBtn[i].disabled == true){
+                        if(allBtn[i].disabled == true && allBtn[i].textContent == "Js"){
                             allBtn[i].disabled = null
                         }
                         
@@ -93,26 +79,29 @@ container.addEventListener('click',(e)=>{
                     item.disabled = true
                     povtor.disabled = true
 				}
+
 				else{
                     clearTimeout(time)
                     time = setTimeout(()=>{
                         item.textContent = "Js"
                         povtor.textContent= "Js"
                         for(let i = 0; i<allBtn.length; i++){
-                            allBtn[i].disabled = null
+                            if(allBtn[i].textContent == "Js"){
+                                allBtn[i].disabled = null
+                            }
+                            
                         }
                     },1000)
                     
-					console.log("разные числа")
 				}
+                
                 kolvo-=1
-                console.log(kolvo)
+
 				
 			}
 			
 			else{
                 kolvo+=1
-                console.log(kolvo)
                 povtor = null
 				povtor = item
 			}
