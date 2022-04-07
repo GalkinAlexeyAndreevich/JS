@@ -1,11 +1,10 @@
 const container = document.querySelector(".container")
 let massNum = []
-let randomArray = []
-let kolvo
+let kolvo =0
 let repaired
-let povtor = 0
+let povtor
 let n = 8
-//let index
+let time;
 createCard()
 let allBtn = document.querySelectorAll(".btnNum")
 function createNumber(mass, n){
@@ -76,41 +75,46 @@ container.addEventListener('click',(e)=>{
     let item = e.target.closest(".btnNum")
     for(let i = 0; i<allBtn.length;i++){
         if(item == allBtn[i]){
-            /*if(repaired == randomArray[i] && povtor == 1){
-                console.log("повтор числа")
-                item.textContent = randomArray[i] 
-                povtor = 0
-                repaired = 0
-            }
-            else if(repaired != randomArray[i] && povtor){
-                console.log("разные числа")
-            }
-            else{
-                item.textContent = randomArray[i] 
-                //repaired = randomArray[i] 
-                povtor = item
-                console.log(povtor)
-                console.log(repaired) 
-            }*/
+            item.textContent = randomArray[i]
 
-			if(povtor){
-				console.log(124)
+			if(kolvo == 1){
+                for(let i = 0; i<allBtn.length; i++){
+                    allBtn[i].disabled = true
+                }
+                console.log(povtor)
 				if(item.textContent == povtor.textContent){
 					console.log("одинаковые числа")
-				 
+                    for(let i = 0; i<allBtn.length; i++){
+                        if(allBtn[i].disabled == true){
+                            allBtn[i].disabled = null
+                        }
+                        
+                    }
+                    item.disabled = true
+                    povtor.disabled = true
 				}
 				else{
+                    clearTimeout(time)
+                    time = setTimeout(()=>{
+                        item.textContent = "Js"
+                        povtor.textContent= "Js"
+                        for(let i = 0; i<allBtn.length; i++){
+                            allBtn[i].disabled = null
+                        }
+                    },1000)
+                    
 					console.log("разные числа")
 				}
-				povtor = null
+                kolvo-=1
+                console.log(kolvo)
+				
 			}
 			
 			else{
-				
-				item.textContent = randomArray[i]
+                kolvo+=1
+                console.log(kolvo)
+                povtor = null
 				povtor = item
-				kolvo ++
-				console.log("gthasfk")
 			}
 		}
 
