@@ -18,6 +18,9 @@ body{
     gap: 30px;
 }
 .btnNum{
+    display: flex;
+align-items: center;
+    justify-content: center;
     background-color: greenyellow;
     width: 100px;
     height: 100px;

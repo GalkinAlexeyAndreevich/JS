@@ -3,7 +3,7 @@ let massNum = []
 let kolvo =0
 let repaired
 let povtor
-let n = 8
+let n = 9
 let time;
 massNum =  createNumber(massNum, n)
 randomArray = RandArr(massNum)
@@ -25,20 +25,19 @@ function RandArr(mass){
 		let t = mass[i]
 		mass[i] = mass[j]
 		mass[j] = t
-		//[mass[i], mass[j]] = [mass[j], mass[i]]
 	}
 	return mass
 }
 
 
 function createCard(n){
-    for(let i =0; i<n/2; i++){
+    for(let i =0; i<Math.floor(n/2); i++){
         let div = document.createElement("div")
         div.classList.add("line")
         container.append(div)
 
-        for(let i =0; i<n/2; i++){
-        let card = document.createElement("button")
+        for(let i =0; i<Math.floor(n/2); i++){
+        let card = document.createElement("div")
         card.classList.add("btnNum")
         card.textContent = "Js"
         div.append(card)
@@ -62,6 +61,7 @@ container.addEventListener('click',(e)=>{
     let item = e.target.closest(".btnNum")
     for(let i = 0; i<allBtn.length;i++){
         if(item == allBtn[i]){
+            item.disabled = true
             item.textContent = randomArray[i]
 
 			if(kolvo == 1){
