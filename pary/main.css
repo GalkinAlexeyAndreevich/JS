@@ -1,0 +1,61 @@
+/* *{
+
+} */
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.game{
+} 
+.title{
+    text-align: center;
+}
+.playingField{
+    display: grid;
+    justify-items: center;
+    gap: 30px;
+}
+.line{
+    display: flex;
+    gap: 30px;
+}
+.btnNum{
+    display: flex;
+    font-size: 150%;
+    align-items: center;
+    justify-content: center;
+    background-color: greenyellow;
+    width: 100px;
+    height: 100px;
+    /* transition: 0.5s linear; */
+    text-decoration: none;
+}
+.btnBegin{
+    display: inline-grid;
+    background-color:rgb(220, 213, 203);
+    /* margin-bottom: 100 px; */
+    /* margin-left: 46.6%;
+    margin-right: 50%; */
+    min-width: max-content;
+    /* align-items: center;
+    justify-content: center; */
+} 
+.closeBtn{
+    pointer-events: none;
+}
+.completeCard{
+    pointer-events: none;
+    display: flex;
+    font-size: 0;
+    background-image: url(img/galochka1.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.formBegin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.close{
+    display: none;
+}
