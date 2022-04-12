@@ -15,4 +15,4 @@ function RandArr(mass){
 		mass[j] = t
 	}
 }
-export{createNumber, RandArr}
+export{createNumber,RandArr}

@@ -30,12 +30,16 @@ body{
     text-decoration: none;
 }
 .btnBegin{
-    display: inline-grid;
-    background-color:rgb(220, 213, 203);
+    /* display: inline-grid; */
+    background-color:green;
+    color: white;
     /* margin-bottom: 100 px; */
     /* margin-left: 46.6%;
     margin-right: 50%; */
     min-width: max-content;
+    margin: 6px;
+    padding: 6px;
+    border-radius: 6px;
     /* align-items: center;
     justify-content: center; */
 } 
@@ -51,11 +55,17 @@ body{
     background-position: 50% 50%;
 }
 .formBegin{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    justify-items: center;
 
 }
 .close{
     display: none;
+}
+.btnEnd{
+    background-color:red;
+    min-width: max-content;
+    margin: 6px;
+    padding: 6px;
+    border-radius: 6px;
 }
