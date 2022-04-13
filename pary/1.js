@@ -34,7 +34,6 @@ function secondCard(item,repeat){
             repeat.classList.add("completeCard")
             numbersFound+=1
             if(numbersFound == n){
-                
                 setTimeout(()=>{alert("Вы выиграли")}, 10);
                 clearGameField()
                 
@@ -53,6 +52,7 @@ function secondCard(item,repeat){
             }
         }
     },1000)
+    
 }
 
 
@@ -147,6 +147,7 @@ function clearGameField(){
     let allBtn = document.querySelectorAll(".btnNum")
     clearInterval(timer1)
     amount = false
+    repeat = null
     beginTimer = false
     numbersFound = 0
     container.innerHTML = ""
