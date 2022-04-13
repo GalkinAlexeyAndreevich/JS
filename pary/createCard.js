@@ -7,7 +7,7 @@ export function createCard(n,container){
             for(let k =0; k<n%Math.ceil(Math.sqrt(n)); k++){
                 let card = document.createElement("div")
                 card.classList.add("btnNum")
-                card.textContent = "Js"
+                card.textContent = "?"
                 div.append(card)
             }
 
@@ -16,7 +16,7 @@ export function createCard(n,container){
             for(let j =0; j<Math.sqrt(n); j++){
             let card = document.createElement("div")
             card.classList.add("btnNum")
-            card.textContent = "Js"
+            card.textContent = "?"
             div.append(card)
             }
         }

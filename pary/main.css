@@ -20,7 +20,8 @@ body{
 }
 .btnNum{
     display: flex;
-    font-size: 150%;
+    font-size: 200%;
+    font-weight:bold;
     align-items: center;
     justify-content: center;
     background-color: greenyellow;
@@ -54,7 +55,7 @@ body{
     background-repeat: no-repeat;
     background-position: 50% 50%;
 }
-.formBegin{
+.formBegin{ 
     display: grid;
     justify-items: center;
 
@@ -63,9 +64,22 @@ body{
     display: none;
 }
 .btnEnd{
-    background-color:red;
+    color:white;
+    width: 200px;
+    height: 40px;
+    background-color:rgb(255, 45, 45);
     min-width: max-content;
     margin: 6px;
     padding: 6px;
+    border: 1px solid black;
     border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.btnEnd:active {
+    background-color: rgb(221, 42, 42)
+}
+
+.btnEnd:hover {
+    background-color: rgb(253, 125, 125)
 }

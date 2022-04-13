@@ -13,12 +13,13 @@ let timer
 let time
 let timer1
 let beginTimer = false
+let proverka = true
 
 function createField(){
     massNum = createNumber(massNum, n)
     RandArr(massNum)
     createCard(n*2,container)
-    console.log(massNum)
+
 }
 
 function secondCard(item,repeat){
@@ -41,13 +42,13 @@ function secondCard(item,repeat){
         }
 
         else{
-            item.textContent = "Js"
-            repeat.textContent= "Js"
+            item.textContent = "?"
+            repeat.textContent= "?"
 
         }
      
         for(let i = 0; i<allBtn.length; i++){
-            if(allBtn[i].textContent == "Js"){
+            if(allBtn[i].textContent == "?"){
                 allBtn[i].classList.remove("closeBtn")
             }
         }
@@ -57,6 +58,37 @@ function secondCard(item,repeat){
 
 
 
+
+function checkInput(){
+    if(!Number(n)){
+        alert("Введите кол-во пар(число)")
+        proverka =false
+    }
+    if(n < 0){
+        alert("Введите число пар, больше 0")
+        proverka =false
+    }
+    if(n%1 !=0){
+        alert("Введите целое число пар")
+        proverka =false
+    }
+    if(!Number(time) && time){
+        alert("Введите число")
+        proverka =false
+    }
+    if(time < 0){
+        alert("Введите время больше 0")
+        proverka =false
+    }
+    if((time%1) != 0){
+        alert("Введите целое число(время)")
+        proverka =false
+    }
+    if(!proverka){
+        Begin.inputTime.value = null
+        Begin.inputBegin.value = null
+    }
+}
 const Begin = BeginGame()
 const gameEnd = gameOver()
 
@@ -65,12 +97,10 @@ Begin.form.addEventListener('submit', (e)=>{
     e.preventDefault();
     n = Begin.inputBegin.value
     time = Begin.inputTime.value
-    if(!Number(n)){
-        alert("Введите число")
-        return
-    }
-    if(!Number(time) && time){
-        alert("Введите число")
+
+    checkInput()
+    if(!proverka){
+        proverka = true
         return
     }
     createField()
@@ -121,16 +151,16 @@ function clearGameField(){
     numbersFound = 0
     container.innerHTML = ""
     Begin.inputBegin.value = null
+    Begin.inputTime.value = null
     Begin.initialValues.classList.remove("close")
     for(let text of allBtn){
-        text.textContent = "Js"
+        text.textContent = "?"
         text.classList.remove("completeCard")
         text.classList.remove("closeBtn")
         
     }
 }
 function gameTimer(time = 10){
-    console.log(time)
     const timerText = document.createElement("p")
     timerText.textContent = time
     container.append(timerText)
@@ -140,7 +170,7 @@ function gameTimer(time = 10){
             clearGameField()
             return
         }
-        else{
+        else if(timerText.textContent > 0){
           timerText.textContent -=1  
         }
         
