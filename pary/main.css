@@ -26,11 +26,19 @@ body{
     font-weight:bold;
     align-items: center;
     justify-content: center;
-    background-color: greenyellow;
+    background-color: orange;
+    /* background-color: greenyellow; */
     width: 100px;
     height: 100px;
     /* transition: 0.5s linear; */
     text-decoration: none;
+}
+.btnNum:active {
+    background-color: rgb(221, 42, 42)
+}
+
+.btnNum:hover {
+    background-color: rgb(110, 100, 154)
 }
 .btnBegin{
     /* display: inline-grid; */
@@ -69,7 +77,7 @@ body{
     color:white;
     width: 200px;
     height: 40px;
-    background-color:rgb(255, 45, 45);
+    background-color:rgb(0, 0, 255);
     min-width: max-content;
     margin: 6px;
     padding: 6px;
@@ -82,8 +90,8 @@ body{
     background-color: rgb(221, 42, 42)
 }
 
-.btnEnd,btn:hover {
-    background-color: rgb(253, 125, 125)
+.btnEnd:hover {
+    background-color: rgb(110, 100, 154)
 }
 .input{
     display: block;
@@ -103,4 +111,13 @@ body{
         inset 0 2px 0 rgba(0,0,0,.2), 
         0 0 4px rgba(0,0,0,0.1), 
         0 0 5px 1px #51CBEE;
+}
+.timer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius:50%;
+    background-color:red;
 }

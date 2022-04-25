@@ -12,6 +12,7 @@ let n
 let timer
 let time
 let timer1
+let timer2
 let beginTimer = false
 let proverka = true
 
@@ -34,7 +35,8 @@ function secondCard(item,repeat){
             repeat.classList.add("completeCard")
             numbersFound+=1
             if(numbersFound == n){
-                setTimeout(()=>{alert("Вы выиграли")}, 10);
+                clearTimeout(timer2)
+                timer2 = setTimeout(()=>{alert("Вы выиграли")}, 10);
                 clearGameField()
                 
             }
@@ -51,7 +53,7 @@ function secondCard(item,repeat){
                 allBtn[i].classList.remove("closeBtn")
             }
         }
-    },1000)
+    },500)
     
 }
 
@@ -162,12 +164,13 @@ function clearGameField(){
     }
 }
 function gameTimer(time = 10){
-    const timerText = document.createElement("p")
+    const timerText = document.createElement("div")
+    timerText.classList.add("timer")
     timerText.textContent = time
     container.append(timerText)
     timer1 = setInterval(() => {
         if(timerText.textContent == 0){
-            alert("Время вышло")
+            setTimeout(()=>{alert("Время вышло")},100)
             clearGameField()
             return
         }
