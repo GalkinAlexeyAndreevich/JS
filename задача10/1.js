@@ -2,9 +2,6 @@ let massStudents = [];
 let table = document.createElement('table');
 table.classList.add("myTable")
 let now = new Date()
-console.log(now)
-// now = formatDate(now)
-// console.log(now)
 let massInput1 = [
   {
     class: "inputName",
@@ -48,6 +45,7 @@ const container = document.querySelector(".container");
 const myForm = document.createElement("form");
 myForm.classList.add("myForm");
 
+// Создание инпутов
 for (let i = 0; i < massInput1.length; i++) {
   const input = document.createElement("input");
   input.classList.add(massInput1[i].class);
@@ -58,6 +56,7 @@ for (let i = 0; i < massInput1.length; i++) {
   myForm.append(input);
 }
 
+// Кнопка отправить
 const butSubmitForm = document.createElement("button");
 butSubmitForm.classList.add("butSubmitForm");
 butSubmitForm.textContent = "Отправить форму";
@@ -72,51 +71,48 @@ myForm.addEventListener("submit", (e) => {
     let classInput = "." + massInput1[i].class;
     const input = document.querySelector(classInput);
     
+    // Проверки
     let inputValue = input.value.trim()
     // if(!inputValue.length){
     //   alert(massInput1[i].placeholder)
     //   return
     // }
-    // if(massInput1[i].name == "birthday"){
-    //   console.log("Это дата")
-    //   inputValue = rusDate(inputValue)
-    //   console.log(inputValue)
-    //   // console.log("Зашли, дата:", inputValue)
-    //   // inputValue = rusDate(inputValue)
-    //   // console.log("Вышли, дата:", inputValue)
-    //   // console.log(inputValue)
-    //   // console.log(obj[massInput1[i].name] )
-    // }
-    // if(massInput1[i].name == "birthday" && rusDate(inputValue) > rusDate("01-01-1900")){
-  
-    //   // console.log("Дата рождения не выходит за диапозон", rusDate(inputValue)< rusDate("01-01-1900"), typeof(inputValue))
-    //   // console.log( rusDate(inputValue),rusDate("01-01-1900"))
-    // }
-    // if(massInput1[i].name == "birthday" && rusDate(inputValue) < rusDate("01-01-1900")){
     if(massInput1[i].name == "birthday"){
       if(comparison(inputValue,"01-01-1900")){
         alert("Дата рождения выходит за диапозон(01.01.1900)")
-      return
+        return
       }
-      con
-      let age = (now.getFullYear() - inputValue.getFullYear())
-      console.log(age)
+      let age = now.getFullYear() - inputValue.slice(0,4)
+      let monthAge = now.getMonth()+1 - inputValue.slice(5,7)
+      let dayAge = now.getDay()+1 - inputValue.slice(8,10)
+      if(dayAge<0){
+        monthAge-=1
+      }
+      if(monthAge<0){
+        age-=1
+      }
       inputValue = rusDate(inputValue).join(".")
-      console.log(inputValue)
+      inputValue = inputValue +"(" + age + " лет)"
     }
-    if(massInput1[i].name == "yearBegin" && (inputValue < "2000" || inputValue > now.getFullYear())){
-      alert("Год поступлеления выходит за диапозон(от 2000 до сегодня)")
-      return
+    if(massInput1[i].name == "yearBegin"){
+      if(inputValue < "2000" || inputValue > now.getFullYear()){
+        alert("Год поступлеления выходит за диапозон(от 2000 до сегодня)")
+        return
+      }
+      let diaposon = `${inputValue}-${Number(inputValue)+4}`
+      let kurs = now.getFullYear() - inputValue
+      if(kurs > 4){
+        inputValue = `${diaposon} (Закончил)`
+      }
+      else{
+        inputValue = `${diaposon} (${kurs} курс)`
+        console.log(diaposon,kurs)
+      }
+      
     }
-    // if(massInput1[i].name == "birthday"){
-    //   console.log(inputValue)
-    //   // console.log("Зашли, дата:", inputValue)
-    //   // inputValue = rusDate(inputValue)
-    //   // console.log("Вышли, дата:", inputValue)
-    //   // console.log(inputValue)
-    //   // console.log(obj[massInput1[i].name] )
-    // }
-    else{obj[massInput1[i].name] = inputValue}
+
+    obj[massInput1[i].name] = inputValue
+
   }
   massStudents.push(obj)
 
@@ -160,29 +156,14 @@ function fillRow(i,row){
     row.appendChild(cell)
   }
 }
-// function formatDate(date) {
-//   console.log(date)
-//   // let dd = date.getDate();
-//   // if (dd < 10) {dd = '0' + dd};
-
-//   // let mm = date.getMonth() + 1;
-//   // if (mm < 10) {mm = '0' + mm};
-
-//   // let yy = date.getFullYear();
-
-//   return dd + '.' + mm + '.' + yy;
-// }
 function rusDate(date){
 let date2 = date.split("-")
   // console.log(date2)
   if(date2[0].length == 4){console.log("Это год")}
   if(date2[0].length == 4){
-    
+    // console.log("jkdgk")
     [date2[0], date2[date2.length-1]]  = [date2[date2.length-1], date2[0]]
   }
-// console.log(date2)
-// date2 = date2.join(".")
-// console.log(date2)
 return date2
 }
 function comparison(date1,date2){
@@ -200,10 +181,3 @@ function comparison(date1,date2){
   }
   // date1 = date1.join(".")
 }
-
-// data2 = data.split("-")
-// if(data2[0].length == 4){
-//     // console.log("Это год")
-//     [data2[0], data2[data2.length-1]]  = [data2[data2.length-1], data2[0]]
-// }
-// data2 = data2.join("/")
