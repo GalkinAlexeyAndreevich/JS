@@ -2,6 +2,9 @@ let massStudents = [];
 let table = document.createElement('table');
 table.classList.add("myTable")
 let now = new Date()
+// let num = 21547980
+// num = num.substr(-1)
+// console.log(num)
 let massInput1 = [
   {
     class: "inputName",
@@ -79,7 +82,7 @@ myForm.addEventListener("submit", (e) => {
     // }
     if(massInput1[i].name == "birthday"){
       if(comparison(inputValue,"01-01-1900")){
-        alert("Дата рождения выходит за диапозон(01.01.1900)")
+        alert(`Дата рождения выходит за диапозон(01.01.1900-сегодня})`)
         return
       }
       let age = now.getFullYear() - inputValue.slice(0,4)
@@ -92,7 +95,8 @@ myForm.addEventListener("submit", (e) => {
         age-=1
       }
       inputValue = rusDate(inputValue).join(".")
-      inputValue = inputValue +"(" + age + " лет)"
+      inputValue = `${inputValue} ( ${age} ${transformAge(age)})`
+      // inputValue = inputValue +"(" + age + " лет)"
     }
     if(massInput1[i].name == "yearBegin"){
       if(inputValue < "2000" || inputValue > now.getFullYear()){
@@ -174,10 +178,21 @@ function comparison(date1,date2){
   
   for(let i=date1.length-1; i> 0; i--){
     console.log(date1[i], date2[i])
-    if(date1[i] < date2[i]){
+    if(date1[i] < date2[i] || date1[i] > now.getFullYear()){
       check = true
       return check
     }
   }
   // date1 = date1.join(".")
+}
+function transformAge(age){
+  if(String(age).substr(-1) == 1){
+    return "год"
+  }
+  else if(String(age).substr(-1) > 1 && String(age).substr(-1)<5){
+    return "года"
+  }
+  else{
+    return "лет"
+  }
 }
