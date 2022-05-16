@@ -11,6 +11,7 @@ table th {
 	padding: 5px;
 	background: #F2F8F8;
 	border: none;
+  user-select: none;
 	border-bottom: 5px solid #F2F8F8;
 }
 table td {
@@ -74,6 +75,7 @@ input{
     background: #000;
   }
   .formSearch{
+    justify-content: center;
     display: flex;
     padding: 15px;
   }
