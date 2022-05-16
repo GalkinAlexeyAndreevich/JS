@@ -9,6 +9,8 @@ export function createSearchForm(){
 
     inputFio.classList.add("fio")
     inputFaculty.classList.add("faculty")
+    inputYearBegin.classList.add("yearBeginyearBegin1")
+    inputYearEnd.classList.add("yearBeginyearEnd")
 
     inputFio.placeholder = "Поиск по фамилии"
     inputFaculty.placeholder = "Поиск по факультету"
@@ -16,5 +18,11 @@ export function createSearchForm(){
     inputYearEnd.placeholder = "Поиск по году окончания обучения"
 
     form.append(inputFio,inputFaculty,inputYearBegin,inputYearEnd)
-    return form
+    return {form,
+        inputFio,
+        inputFaculty,
+        inputYearBegin,
+        inputYearEnd
+
+    }
 }

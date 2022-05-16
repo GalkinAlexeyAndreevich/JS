@@ -2,6 +2,7 @@ import { Student } from "./modules/student.js"
 import { createForm } from "./modules/form.js";
 import { getValue } from "./modules/studentValidate.js";
 import { createSearchForm } from "./modules/searchForm.js";
+import { createTitle } from "./modules/title.js";
 export function createApp(container,localArr, key){
 
     let arrStudents  = []
@@ -51,10 +52,14 @@ export function createApp(container,localArr, key){
         }
 
         return table
-    }
+    }    
+    const titlesearchForm = createTitle("Фильтрация")
+    const searchForm = createSearchForm()
+    container.append(titlesearchForm, searchForm.form)
 
+    const titleTable = createTitle("Панель студентов")
     let tableStudent = buildTable()
-    container.append(tableStudent)
+    container.append(titleTable,tableStudent)
 
     // Создание новой колонки таблицы
     function newStudentRow(student){
@@ -74,46 +79,73 @@ export function createApp(container,localArr, key){
     } 
 
     // Сортировка
-    function sortStudents(prop,dir){
-        const studentsCopy = [...arrStudents]
+    function sortStudents(arr,prop,dir){
+        const studentsCopy = [...arr]
         return studentsCopy.sort(function(studentA, studentB){
             if(dir?studentA[prop] <  studentB[prop]:studentA[prop] > studentB[prop])
             return -1
         })
     }
-
-    const searchForm = createSearchForm()
-    container.append(searchForm)
-    console.log(searchForm)
-    for(const item of searchForm){
-        item.addEventListener('input',()=>{
-            if(item.value){
-                consol
-                prop1 = item.classList
-                value1 = item.value
+    function filter(arr,prop,value){
+        let result = []
+        let copy = [...arr]
+        for(const item of copy){
+            if(prop == "fio"){
+                if(String(item.fio).includes(value) == true){
+                    result.push(item)
+                }
             }
-            // console.log(item)
-            // console.log(item.classList)
-            // console.log(item.value)
+            else if(String(prop).includes("yearBegin")){
+                if(String(prop).includes("yearBegin1")){
+                    if(String(item["yearBegin"]) == value){
+                    result.push(item)
+                    }  
+                }
 
-            // filter(item.classList,item.value)
+                if(String(item["yearBegin"]) == (Number(value)-4)){
+                    result.push(item)
+                }  
+            }
+            else{
+                if(String(item[prop]).includes(value) == true){
+                    result.push(item)
+                } 
+            }
+
+        }
+        return result
+    }
+
+    let prop1 = 'fio'
+    let value1 = ''
+
+
+    for(const item of searchForm.form){
+        item.addEventListener('input',()=>{
+            render()
         })
     }
 
     // Сортировка по клику
     let column = 'fio'
     let columnDir = true
-    let prop1 = 'fio'
-    let value1 = ''
+
 
     function render(){
         let studentsCopy = [...arrStudents]
-        studentsCopy = sortStudents(column,columnDir)
-
-        // studentsCopy = filter('faculty','d') 
-        console.log(prop1)
-        console.log(value1)
-        studentsCopy = filter(prop1,value1) 
+        studentsCopy = sortStudents(studentsCopy,column,columnDir)
+        if(searchForm.inputFio.value){
+           studentsCopy = filter(studentsCopy,searchForm.inputFio.classList,searchForm.inputFio.value)  
+        }
+        if(searchForm.inputFaculty.value){
+            studentsCopy = filter(studentsCopy,searchForm.inputFaculty.classList,searchForm.inputFaculty.value)  
+         }
+         if(searchForm.inputYearBegin.value){
+            studentsCopy = filter(studentsCopy,searchForm.inputYearBegin.classList,searchForm.inputYearBegin.value)  
+         }
+         if(searchForm.inputYearEnd.value){
+            studentsCopy = filter(studentsCopy,searchForm.inputYearEnd.classList,searchForm.inputYearEnd.value)  
+         }
 
         tableStudent.lastChild.innerHTML = ''
         for(const student of studentsCopy){
@@ -128,14 +160,8 @@ export function createApp(container,localArr, key){
             
     })
 
-    render()
+    
 
-
-    // searchForm.addEventListener('submit',(e)=>{
-    //     e.preventDefault()
-        
-
-    // })
     const myForm = createForm()
     container.append(myForm.myForm)
 
@@ -178,35 +204,6 @@ export function createApp(container,localArr, key){
 
     })
 
-    function filter(prop,value){
-        let result = []
-        let copy = [...arrStudents]
-        for(const item of copy){
-            console.log(item)
-            console.log(prop)
-            if(prop == "fio"){
-                console.log('это фамилия')
-                let check = true
-                const arrProp = ['surname', 'name', 'patronymic']
-                for(const item1 of arrProp){
-                    // console.log(item[item1].includes(value))
-                    if(check && (String(item[item1]).includes(value) == true)){
-                        console.log("Нашли")
-                        result.push(item)
-                        check = false    
-                    }  
-                }
+    render()
 
-            }
-            else{
-                console.log("зашли")
-                if(String(item[prop]).includes(value) == true){
-                    result.push(item)
-                } 
-            }
-
-        }
-        console.log(result)
-        return result
-    }
 }

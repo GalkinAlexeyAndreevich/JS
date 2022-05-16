@@ -5,7 +5,6 @@ export function createForm() {
     title.textContent = "Добавить нового студента"
     title.classList.add("title")
     myForm.append(title)
-    // container.append(title)
     
     // Создание инпутов
     const inputSurname = document.createElement("input");
