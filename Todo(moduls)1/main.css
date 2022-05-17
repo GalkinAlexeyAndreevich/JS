@@ -1,0 +1,12 @@
+.container{
+    max-width: 50%;
+}
+ul{
+    display: grid;
+    gap: 10 px;
+}
+li{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20 px 10px; 
+}
