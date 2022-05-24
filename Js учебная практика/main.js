@@ -1,0 +1,8 @@
+const timerItems = document.querySelectorAll(".timer__count")
+console.log(timerItems)
+// getHours(), getMinutes(), getSeconds()
+const today = new Date()
+let days = today.getDate() 
+let hours = today.getHours()
+let minutes = today.getMinutes()
+let seconds = today.getSeconds()
