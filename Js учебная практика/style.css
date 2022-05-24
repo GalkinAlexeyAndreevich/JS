@@ -196,7 +196,7 @@ h6{
 
 .process{
     position: relative;
-    padding-bottom: 23.1rem;
+    padding-bottom: 20rem;
 }
 
 .process__img{
@@ -263,7 +263,7 @@ h6{
 
 .team{
     position: relative;
-    padding-bottom: 23.1rem;
+    padding-bottom: 20rem;
 }
 .team__img{
     width: 12.7rem;
@@ -308,7 +308,7 @@ h6{
     align-items: center;
     border: 1px solid #FFFFFF;
     background: #000;
-    /* padding: 10px 30px; */
+    padding: 10px 30px;
     width: 14.3rem;
     height: 4.4rem;
     margin: auto;
@@ -319,4 +319,52 @@ h6{
     font-size: 1.6rem;
     line-height: 160%;
     opacity: 0.8;
+}
+
+.footer{
+    position: relative;
+    padding-bottom: 20rem; 
+}
+
+.footer__header{
+    font-weight: 700;
+    font-size: 4.8rem;
+    line-height: 140%;
+    text-align: center;
+}
+
+.footer__text{
+    font-size: 1.6rem;
+    line-height: 160%;
+    text-align: center;
+    margin-top: 3rem;
+    opacity: 0.5;
+}
+
+.footer__button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 3rem;
+    gap: 1rem;
+    width: 18.8rem;
+    height: 4.4rem;
+    margin: auto;
+    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
+    margin-top: 4.52rem;
+    margin-bottom: 4.08rem;
+}
+
+.footer__icons{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    /* margin-bottom: 4.08rem; */
+}
+
+.footer__icon{
+    display: flex;
+    width: 5rem;
+    height: 5rem;
 }
