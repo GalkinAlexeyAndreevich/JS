@@ -100,7 +100,7 @@ h6{
 .main-display__background{
     position: absolute;
     margin-top: -1%;
-    /* width: 100%; */
+    width: 100%;
     top: 0;
     left: 0;
     z-index: 1;
@@ -369,6 +369,13 @@ h6{
     height: 5rem;
 }
 
+.block__center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .modal{
     position: fixed;
     inset: 0;
@@ -378,13 +385,16 @@ h6{
     overflow-y: auto;
     z-index: 10;
     padding: 3rem 0;
-    background: rgb(0, 0, 0, 0.8);
+    background: rgba(7, 7, 7, 0.8);
+    display: none;
 }
 
 .modal__inner{
-    width: 66.3 rem;
+    position: relative;
+    width: 66.4rem;
+    height: 55.1rem;
     padding: 9rem 9.5rem;
-    background: #2c2c2c;
+    background:#2C2C2C;
     text-align: center;
 }
 
@@ -392,7 +402,6 @@ h6{
     font-weight: 700;
     font-size: 4.8rem;
     line-height: 140%;
-    margin-bottom: 1rem;
 }
 
 .modal__subheader{
@@ -404,39 +413,50 @@ h6{
 
 .modal__elements{
     width: 45.4rem;
-    margin: 0 auto;
+    margin: 0 auto 3.2rem auto;
 }
 
-.modal__item{    
+.modal__item{
     height: 4.4rem;
-
 }
 
 .modal__input{
-    width: 100%;
-    height: 100%;
-    background: grey;
+    width: 45.4rem;
+    height: 4.4rem;
+    padding-left: 2rem;
+    background-color: grey;
     border-radius: 5rem;
     font-size: 1.4rem;
     line-height: 160%;
-    color:white;
+    color: #FFFFFF;
     opacity: 0.8;
 }
 
 .modal__item:not(:last-child){
-    margin-bottom: 1.8;
+    margin-bottom: 1.8rem;
 }
 
 .modal__close{
+    /* display: flex; */
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 1.6rem;
+    right: 3.3rem;
     width: 5rem;
     height: 5rem;
     cursor: pointer;
+    vertical-align: middle;
+    text-align: left;
 }
 
 .noscroll{
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 100%;
+}
+
+::placeholder{
+    color:white;
+}
+
+.white{
+    opacity:0.5;
 }
