@@ -1,6 +1,6 @@
 const containerProduct = document.querySelector('.cards-menu')
 
-const cartArray = localStorage.getItem('cart')?
+let cartArray = localStorage.getItem('cart')?
 JSON.parse(localStorage.getItem('cart')):[]
 
 function changeItem(restaurant){
@@ -16,9 +16,11 @@ function changeItem(restaurant){
 }
 
 function addToCart(obj){
-    if(cartArray.some((item)=>item.id === obj.id)){
+    
+    cartArray = JSON.parse(localStorage.getItem('cart'))
+    if(cartArray.some((item)=>item.id === obj.id && item.owner == obj.owner)){
         cartArray.map((item =>{
-            if(item.id === obj.id){
+            if(item.id === obj.id && item.owner == obj.owner){
                 item.count++
             }
             return item
@@ -55,7 +57,7 @@ const renderItems = (data)=>{
                 </div>
             </div>
         `
-        card.querySelector('.button-card-text').addEventListener('click', ()=>{
+        card.querySelector('.button-add-cart').addEventListener('click', ()=>{
             console.log(JSON.parse(localStorage.getItem('key2')))
             let owner = (JSON.parse(localStorage.getItem('key2')))[0]
             console.log(owner)
