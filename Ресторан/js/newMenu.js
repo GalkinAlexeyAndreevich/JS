@@ -56,7 +56,10 @@ const renderItems = (data)=>{
             </div>
         `
         card.querySelector('.button-card-text').addEventListener('click', ()=>{
-            addToCart({name, price, id, count:1})
+            console.log(JSON.parse(localStorage.getItem('key2')))
+            let owner = (JSON.parse(localStorage.getItem('key2')))[0]
+            console.log(owner)
+            addToCart({name, price, id, count:1,owner})
         })
         containerProduct.append(card)
     })

@@ -4,6 +4,9 @@ function createCart(){
     const modalBody = document.querySelector('.modal-body')
     const close = modalCart.querySelector('.close')
     const butSend = modalCart.querySelector('.button-primary')
+    if(localStorage.getItem('cart')){
+        renderItems(JSON.parse(localStorage.getItem('cart')))
+    }
     console.log(butSend.textContent)
 
     function resetCart(){
@@ -45,35 +48,40 @@ function createCart(){
         const modalPriceTag = document.querySelector('.modal-pricetag')
         modalPriceTag.textContent = ''
         let num = 0
-        console.log(modalPriceTag.textContent)
+        const ownerNow = (JSON.parse(localStorage.getItem('key2')))[0]
         data.forEach(item=>{
-            const {name, price, id, count} = item
+            const {name, price, id, count,owner} = item
+            if(ownerNow == owner && count > 0){
+                const cartElem = document.createElement('div')
 
-            const cartElem = document.createElement('div')
+                cartElem.classList.add('food-row')
 
-            cartElem.classList.add('food-row')
+                cartElem.innerHTML =  `
+                <span class="food-name">${name}</span>
+                <strong class="food-price">${price}₽</strong>
+                <div class="food-counter">
+                    <button class="counter-button btn-dec">-</button>
+                    <span class="counter">${count}</span>
+                    <button class="counter-button btn-inc">+</button>
+                </div>
+                `
 
-            cartElem.innerHTML =  `
-            <span class="food-name">${name}</span>
-            <strong class="food-price">${price}₽</strong>
-            <div class="food-counter">
-                <button class="counter-button btn-dec">-</button>
-                <span class="counter">${count}</span>
-                <button class="counter-button btn-inc">+</button>
-            </div>
-            `
+                cartElem.querySelector('.btn-dec').addEventListener('click',()=>{
+                    decCount(id)
 
-            cartElem.querySelector('.btn-dec').addEventListener('click',()=>{
-                decCount(id)
+                })
+                cartElem.querySelector('.btn-inc').addEventListener('click',()=>{
+                    incCount(id)
 
-            })
-            cartElem.querySelector('.btn-inc').addEventListener('click',()=>{
-                incCount(id)
-
-            })
-            num += price * count
-            console.log(item)
-            modalBody.append(cartElem)
+                })
+                num += price * count
+                console.log(item)
+                modalBody.append(cartElem) 
+            }
+            else{
+                console.log('Не ваш заказ')
+            }
+            
         })
         modalPriceTag.textContent = num
 
