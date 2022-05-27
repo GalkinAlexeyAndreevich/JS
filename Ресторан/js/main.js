@@ -5,14 +5,17 @@ function workForm(key,key2,localArrLogin){
     const butOut = document.querySelector('.button-out')
     const loginName = document.querySelector('.user-name')
     const formClose = document.querySelector('.close-auth')
+    const buttonCard = document.querySelector('.button-cart')
+
 
     if (localStorage.getItem(key2)) {
-        console.log(JSON.parse(localStorage.getItem(key2)).length)
         if((JSON.parse(localStorage.getItem(key2)).length) > 0){
             localArrLogin = JSON.parse(localStorage.getItem(key2));
             loginName.textContent = localArrLogin[0]
             loginName.style.display = 'flex'
             butOut.style.display = 'flex'
+
+            buttonCard.style.display = 'flex'
             butIn.style.display = 'none'
         }    
     }
@@ -23,15 +26,11 @@ function workForm(key,key2,localArrLogin){
         }
 
     ]
-    console.log(localArr.length)
     if (localStorage.getItem(key)) {
-        console.log(JSON.parse(localStorage.getItem(key)).length)
         if((JSON.parse(localStorage.getItem(key)).length) > localArr.length){
-            console.log("Вытащили из локалки")
             localArr = JSON.parse(localStorage.getItem(key)); 
         }    
     }
-    console.log(localArr.length)
 
     butIn.addEventListener('click',()=>{
         form.style.display = 'flex'
@@ -84,7 +83,8 @@ function workForm(key,key2,localArrLogin){
 
         if(check){
             loginName.style.display = 'flex'
-            form.style.display = 'none'  
+            form.style.display = 'none'
+            buttonCard.style.display = 'flex'  
         }
 
         butIn.style.display = 'none'
@@ -101,6 +101,7 @@ function workForm(key,key2,localArrLogin){
         loginName.style.display = 'none'
         loginName.textContent = ''
         localArrLogin.length = 0
+        buttonCard.style.display = 'none'
         localStorage.setItem(key2, JSON.stringify(localArrLogin))
     })
 
