@@ -1,0 +1,161 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+table th {
+	font-weight: bold;
+    max-width: 1px;
+	padding: 5px;
+	background: #F2F8F8;
+	border: none;
+    user-select: none;
+	border-bottom: 5px solid #F2F8F8;
+}
+table td {
+	padding: 5px;
+    padding-left: 50px;
+	border: none;
+	border-bottom: 5px solid #F2F8F8;
+}  
+
+img{
+    /* width: 100%;
+    height: 100%; */
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+a{
+    text-decoration: none;
+    color:inherit;
+}
+
+button,
+input{
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    padding: 0;
+    margin: 0;
+}
+header{
+    display: flex;
+    height: 90px;
+    background: #FFFFFF;
+    box-shadow: 0px 9.03012px 27.0904px rgba(176, 190, 197, 0.32),
+    0px 3.38629px 5.64383px rgba(176, 190, 197, 0.32);
+    align-items: center;
+    
+    
+}
+.divLogoInput{
+    display: flex;
+
+}
+.header__logo{
+    width: 50px;
+    height: 50px;
+    padding-left: 20px;
+} 
+.button{
+    width: max-content;
+    height: max-content;
+}
+.div__header__input{
+    padding-left: 53px;
+}
+.header__input{
+    width: 580px;
+    height: 44px;
+}
+.title{
+    padding-left: 20px;
+    padding-top: 40px;
+}
+.table{
+    padding-left: 20px;
+    padding-top: 26px;
+}
+.addClientDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 26.5px;
+    gap: 10px;
+
+    padding-top: 40px;
+}
+
+.addClientBut{
+    width: 216px;
+    height: 44px;
+}
+main{
+    display: grid;
+    /* justify-content: center;
+    align-items: center; */
+}
+.off-display{
+    display: none;
+}
+.mainDiv{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 3rem 0;
+    /* opacity: 0.5; */
+    display: none;
+    background: rgba(7, 7, 7, 0.5);
+}
+.modalForm{
+    width: 450px;
+    height: 400px;
+    background:white;
+    /* justify-content: center;
+    align-items: center; */
+}
+.headerDiv{
+    display: flex;
+    justify-content: space-between;
+} 
+
+.modalDiv{
+    display: grid;
+    gap: 30px;
+    /* justify-content: center;
+    align-items: center; */
+}
+.block__center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.butSave{
+    display: flex;
+    width: 147px;
+    height: 44px;
+    /* flex-direction: row; */
+    /* align-items: center; */
+    /* gap: 10px; */
+    justify-content: center;
+    align-items: center;
+    background: #9873FF;
+}
+/* .butChange{
+    padding-right: 30px;
+} */
