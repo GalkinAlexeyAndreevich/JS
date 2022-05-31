@@ -1,4 +1,5 @@
-table th {
+/* table th {
+    align-items: left;
 	font-weight: bold;
     max-width: 1px;
 	padding: 5px;
@@ -8,11 +9,12 @@ table th {
 	border-bottom: 5px solid #F2F8F8;
 }
 table td {
+    align-items: left;
 	padding: 5px;
     padding-left: 50px;
 	border: none;
 	border-bottom: 5px solid #F2F8F8;
-}  
+}   */
 
 img{
     /* width: 100%;
@@ -95,15 +97,21 @@ h6{
     padding-left: 32px;
 }
 table {
-	width: 1186px;
+    border-spacing: 0px;
+    margin-left: auto;
+    margin-right: auto;
+	width: 1500px;
 	margin-bottom: 20px;
 	border: 15px solid #F2F8F8;
 	border-top: 5px solid #F2F8F8;
 	border-collapse: collapse; 
 }
+table thead{
+    text-align:left;
+
+}
 table th {
-    align-items:left;
-    justify-content: left;
+
     /* display: flex; */
 	font-weight: bold;
     max-width: 1px;
@@ -132,23 +140,45 @@ td div{
 td p{
     display: flex;
 }
+.add-client{
+    width: 216px;
+    height: 44px;
+    background:white;
+    border: 1px solid #9873FF;
+}
 .form-add-client{
+    padding: 30px;
     width: 450px;
     height: 400px;
     background:white;
     /* justify-content: center;
     align-items: center; */
 } 
-.header-add-client{
-    display: flex;
-    justify-content: space-between;
-} 
-.items-add-client{
+.form-add-button{
     display: grid;
-    gap: 30px;
     justify-content: center;
     align-items: center;
 }
+/* .header-add-client{
+    display: flex;
+    justify-content: space-between;
+}  */
+.items-add-client{
+    display: grid;
+    gap: 25px;
+    padding-top: 30px;
+    /* justify-content: center;
+    align-items: center; */
+}
+.form-add-button{
+    display: grid;
+    gap: 25px;
+    margin: auto;
+    /* padding-top: 30px; */
+    justify-items: center;
+    align-items: center;
+}
+
 .hours-minutes{
     padding-left: 7px;
 }
@@ -158,6 +188,105 @@ td p{
 .input-add{
     border:none;
     border-bottom: 2px solid black;
+}
+.off-display{
+    display: none;
+}
+.background-form-add{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 3rem 0;
+    /* opacity: 0.5; */
+    background: rgba(7, 7, 7, 0.5);
+}
+.background-form-change{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 3rem 0;
+    /* opacity: 0.5; */
+    background: rgba(7, 7, 7, 0.5);
+}
+.background-form-delete{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 3rem 0;
+    /* opacity: 0.5; */
+    background: rgba(7, 7, 7, 0.5);
+}
+.form-change-client{
+    /* display: flex; */
+    padding: 30px;
+    width: 450px;
+    height: 100%;
+    background:white;
+    justify-content: center;
+    align-items: center;
+} 
+.form-delete-client{
+    padding: 30px;
+    width: 450px;
+    height: 300px;
+    background:white;
+    /* justify-content: center;
+    align-items: center; */;
+}
+.btn{
+    /* padding: 15.5px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-contact{
+    width: 450px;
+    height: 35px;
+}
+/* .form{
+    max-height: 1500px;
+} */
+.save-add-client{
+    width: 147px;
+    height: 44px;
+    background: #9873FF;
+}
+img{
+    padding-right: 5px;
+}
+.header-form{
+    display: flex;
+    justify-content: space-between; 
+
+}
+.title-change-form{
+    display: flex;
+}
+.change-id{
+    align-items: center;
+    padding-top: 6px;
+    padding-left: 10px;
+    color: #B0B0B0;
+}
+/* .hidden-text{
+    display: none;
+} */
+.text-delete{
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 /* table tr :not(last-child){
     border-right: solid black;

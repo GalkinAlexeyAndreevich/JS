@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./main.js" defer></script>
+    <script type="module" src="./main.js" defer></script>
 </head>
 <body>
     <header class="header">
@@ -56,7 +56,7 @@
                     <th>Контакты</th>
                     <th>Действия</th>
                 </thead>
-                <tbody>
+                <tbody class="tbody">
                     <tr>
                         <td>123455</td>
                         <td>Скворцов Денис Юрьевич</td>
@@ -95,38 +95,108 @@
             </table>
         </section>
         <section class="section-add-client">
-            <button class="add-client"><img src="./img/addClient.svg" alt="">Добавить клиента</button>
+            <button class="btn add-client"><img src="./img/addClient.svg" alt="">Добавить клиента</button>
         </section>
         <section class="form-add">
-            <div class="background-form">
-                <form action="" class="form-add-client">
-                    <div class="header-add-client">
-                        Новый клиент
-                        <img src="./img/close.svg" alt="">
-                    </div>
-                    <div class="items-add-client">
-                        <div class="div-add add-surname-div">
-                            Фамилия
-                            <input type="text" class="input input-add add-surname" placeholder="Фамилия">
-                        </div>
-                        <div class="div-add add-surname-div">
-                            Имя
-                            <input type="text" class="input input-add add-name" placeholder="Имя">
-                        </div>                        
-                        <div class="div-add add-surname-div">
-                            Отчество
-                            <input type="text" class="input input-add  add-lastname" placeholder="Отчество">
-                        </div>
-                       
-                        
-                        <button class="btn add-contact"><img src="./img/addContact.svg" alt="">Добавить клиента</button>
-                        <button class="btn save-add-client">Сохранить</button>
-                        <a href="#">Отмена</a>
-                    </div>
-                </form>
-            </div>
+            
 
         </section>
     </main>
+    <div class="background-form-add off-display block-center">
+                <form action="" class="form form-add-client">
+                    <div class="header-form header-add-client">
+                        <h1 class="form-title">Новый клиент</h1>
+                        <div class="close">
+                           <img src="./img/close.svg" alt=""> 
+                        </div>
+                        
+                    </div>
+                    <div class="items-add-client">
+                        <div class="div-add add-surname-div">
+                            <!-- Фамилия -->
+                            <input type="text" class="input input-add add-surname" placeholder="Фамилия*" required="required">
+                        </div>
+                        <div class="div-add add-surname-div">
+                            <!-- Имя -->
+                            <input type="text" class="input input-add add-name" placeholder="Имя*" required="required">
+                        </div>                        
+                        <div class="div-add add-surname-div">
+                            <!-- Отчество -->
+                            <input type="text" class="input input-add  add-lastname" placeholder="Отчество" required="required">
+                        </div>
+                       
+                        <div class="form-add-button">
+                            <button class="btn add-contact"><img src="./img/addContact.svg" alt="">Добавить контакт</button>
+                            <button class="btn save-add-client">Сохранить</button>
+                            <a href="#">Отмена</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="background-form-change off-display block-center">
+                <form action="" class="form form-change-client">
+                    <div class=" header-form header-change-client ">
+                        <div class="title-change-form ">
+                          <h1 class="form-title block-center">Изменить данные</h1> 
+                          <p class="change-id block-center">ID:123458</p> 
+                        </div>
+                        
+                        <div class="close-change block-center">
+                           <img src="./img/close.svg" alt=""> 
+                        </div>
+                        
+                    </div>
+                    <div class="items-add-client">
+                        <div class="div-add add-surname-div">
+                            <p class="text-for-input">Фамилия</p>
+                            <input type="text" class="input input-add add-surname" placeholder="Фамилия*">
+                        </div>
+                        <div class="div-add add-surname-div">
+                            <p class="text-for-input">Имя</p>
+                            <input type="text" class="input input-add add-name" placeholder="Имя*">
+                        </div>                        
+                        <div class="div-add add-surname-div">
+                            <p class="text-for-input">Отчество</p>
+                            
+                            <input type="text" class="input input-add  add-lastname" placeholder="Отчество">
+                        </div>
+                       <div class="hidden-text off-display">
+                           <div class="info">
+                               <select name="" id="">
+                                   <option value="">phone</option>
+                                   <option value="">vk</option>
+                                   <option value="">mail</option>
+                                   <option value="">facebook</option>
+                               </select>
+                               <input type="text" class="contact-input">
+                               <button class="close-add-contact"><img src="./img/delete-contact.svg" alt=""></button>
+                           </div>
+                       </div>
+                        <div class="form-add-button">
+                            <button class="btn add-contact-change"><img src="./img/addContact.svg" alt="">Добавить контакт</button>
+                            <button class="btn save-add-client">Сохранить</button>
+                            <a href="#">Удалить клиента</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="background-form-delete off-display block-center">
+                <form action="" class="form form-delete-client">
+                    <div class=" header-form header-change-client ">
+                        <h1 class="delete-client-header">Удалить клиента</h1>
+                        <div class="close-delete block-center">
+                            <img src="./img/close.svg" alt=""> 
+                         </div>
+                    </div>
+                    <div class="text-delete ">
+                        <p class="text-delete-client block-center">Вы действительно хотите удалить данного клиента?</p>
+                        <button class="delete-client-end">Удалить</button>
+                        <a  class="block-center" href="#">Отмена</a>
+                    </div>
+
+                </form>
+            </div>
 </body>
 </html>
