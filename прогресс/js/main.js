@@ -1,9 +1,10 @@
 import {createUser} from './module/createUser.js'
 import { fillTable } from "./module/fillTable.js";
 import {sortClients} from "./module/sort.js";
-import {contactsForm} from "./module/contactsForm.js";
+// import {contactsForm} from "./module/contactsForm.js";
 import {getFromLocal} from "./module/getFromLocal.js";
-import {changeClient} from "./module/changeClient.js";
+import {changeClient} from "./module/changeClient.js";4
+import { createItemContact } from "./module/createItemContact.js"
 // import {closeForm} from "./module/closeForm.js";
 
 function preloader(){
@@ -32,21 +33,21 @@ function forForm(){
 
 
 
-    formAddUser.addEventListener('click',()=>{
-        const closeContacts = document.querySelectorAll(".closeContact")
+    // formAddUser.addEventListener('click',()=>{
+    //     const closeContacts = document.querySelectorAll(".closeContact")
 
-        for(let item of closeContacts){
-            item.addEventListener('click', ()=>{
-                console.log('удалить')
-                console.log(item.parentElement)
-                item.parentElement.remove()
-                formAddUser.style.display = 'flex'
-            })
-        } 
-    })
+    //     for(let item of closeContacts){
+    //         item.addEventListener('click', ()=>{
+    //             console.log('удалить')
+    //             console.log(item.parentElement)
+    //             item.parentElement.remove()
+    //             formAddUser.style.display = 'flex'
+    //         })
+    //     } 
+    // })
 
 
-    contactsForm()
+    // contactsForm()
     getFromLocal()
 
     // const icons = document.querySelectorAll('.icons')
@@ -61,7 +62,29 @@ function forForm(){
 
 
     btnAddUser.addEventListener("click", ()=>{
+        const divContacts = formAddUser.querySelector(".add-contacts-div"); 
+        const btnAddContacts = formAddUser.querySelector(".btn-form-cont")
         formAddUser.style.display = "flex"
+        btnAddContacts.addEventListener('click',()=>{
+            console.log('нажали')
+            const divContact = createItemContact()
+            const allItems = divContacts.querySelectorAll('.item-contact')
+            divContacts.append(divContact)
+            if(allItems){
+                if(allItems.length > 10){
+                    btnAddContacts.style.display = 'none'
+                } 
+            }
+    
+            
+            let removeContacts = formAddUser.querySelectorAll('.closeContact')
+            for(let removeContact of removeContacts){
+                removeContact.addEventListener('click',()=>{
+                    removeContact.parentElement.remove()
+                    if(removeContacts.length < 10){btnAddContacts.style.display = 'flex'}
+                })
+            }
+        })
     })
 
     btnAddCont.addEventListener("click", (e)=>{
@@ -73,7 +96,11 @@ function forForm(){
         let mass = [formAddUser, formChange, formDelete]
         for(let i = 0; i < cross.length;i++){
             cross[i].addEventListener("click", ()=>{
-                mass[i].style.display = "none"     
+                mass[i].style.display = "none"  
+                if(i !=2) {
+                   mass[i].querySelector('.add-contacts-div').innerHTML = ''
+                }
+                
             })
             mass[i].addEventListener("click", (e) => {
                 if(e.target.closest(".modal__inner")) return
@@ -83,23 +110,81 @@ function forForm(){
 
 
     closeForm()
+    
+    // const surname = formAddUser.querySelector(".surname");
+    // const name = formAddUser.querySelector(".name");
+    // const postName = formAddUser.querySelector(".postName");
 
-    let index = ''
+    let index = ''        
+    let arrItem = []
     tableBody.addEventListener('click', (e)=>{
         e.preventDefault()
         let arr = JSON.parse(localStorage.getItem('client'))
-        console.log(arr)
+        // console.log(arr)
         let item = e.target
         let arrItem = item.className.split(' ')
         console.log(item)
         // Итоговое изменениие
         if(String(item.className).includes('btn-change')){
             console.log('нажали изменить')
+            
+            const inputSurname = formChange.querySelector(".change-surname")
+            const inputName= formChange.querySelector(".change-name")
+            const inputPostName = formChange.querySelector(".change-postName") 
+
+            const divContacts = formChange.querySelector(".add-contacts-div"); 
+            const btnAddContacts = formChange.querySelector(".btn-form-cont")
+            const close = formChange.querySelector(".form-close")
+            let arrClients = JSON.parse(localStorage.getItem('client'))
             arrItem = item.className.split(' ')
             index = arrItem[arrItem.length-1]
+
+            divContacts.innerHTML = ''
+            let arrFio = arrClients[index].fio.split(' ')
+            console.log(arrFio)
+            inputSurname.value = arrFio[0]
+            inputName.value = arrFio[1]
+            inputPostName.value = arrFio[2]
+
+            for(let contact of arrClients[index].contacts){
+                let divContact = createItemContact()
+                divContact.querySelector('.select-contact').value = contact.type
+                divContact.querySelector('.input-contact').value = contact.value
+                
+                divContacts.append(divContact)
+
+            }
             // console.log(arrItem1[arrItem1.length-1])
             formChange.style.display = 'flex'
             formChange.querySelector('.text-title').innerHTML = `ID: ${index}`
+
+            btnAddContacts.addEventListener('click',()=>{
+                const divContact = createItemContact()
+                const allItems = divContacts.querySelectorAll('.item-contact')
+                console.log('Добавили в изменения')
+                divContacts.append(divContact)
+                if(allItems){
+                    if(allItems.length > 10){
+                        btnAddContacts.style.display = 'none'
+                    } 
+                }
+                let removeContacts = formChange.querySelectorAll('.closeContact')
+                for(let removeContact of removeContacts){
+                    removeContact.addEventListener('click',()=>{
+                        removeContact.parentElement.remove()
+                        if(removeContacts.length < 10){btnAddContacts.style.display = 'flex'}
+                    })
+                }
+            })
+
+
+            close.addEventListener('click',()=>{
+                console.log('закрыли окно')
+                formChange.style.display = "none" 
+                divContacts.innerHTML = ''
+            })
+        
+
         }
         //Окончательное удаление
         if(String(item.className).includes('btn-delete')){
@@ -120,7 +205,7 @@ function forForm(){
                 formDelete.style.display = 'none'
         })
         changeBtnEnd.addEventListener('click',()=>{
-            changeClient(arr, index)
+            changeClient(index)
         })
             
 

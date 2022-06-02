@@ -1,7 +1,14 @@
 import { fillTable } from "./fillTable.js";
+// import { createItemContact } from "./createItemContact.js"
 export function createUser(){
     const formAddUser = document.querySelector(".modal2")
     const btnOtmena = formAddUser.querySelector(".btn-del-form");
+    const divContacts = formAddUser.querySelector(".add-contacts-div"); 
+
+    // const divContacts = formAddUser.querySelector(".add-contacts-div"); 
+    // const btnAddContacts = formAddUser.querySelector(".btn-form-cont")
+    // console.log(btnAddContacts)
+
     const inputContacts = formAddUser.querySelectorAll(".input-contact")
     const selectContacts = formAddUser.querySelectorAll(".select-contact")
     console.log(inputContacts)
@@ -52,9 +59,15 @@ export function createUser(){
         surname.value = ""
         name.value = "";
         postName.value = "";
+        divContacts.innerHTML = ''
+        // for(let i=0; i<inputContacts.length; i++){
+        //     inputContacts[i].value = ''
+        //     selectContacts[i].value = 'phone'
+        // }
     
     }
     btnOtmena.addEventListener("click", () => {
       formAddUser.style.display = "none";
     });
+
 }
