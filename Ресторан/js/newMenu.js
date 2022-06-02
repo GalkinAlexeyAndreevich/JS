@@ -17,8 +17,14 @@ function changeItem(restaurant){
 
 function addToCart(obj){
     
-    cartArray = JSON.parse(localStorage.getItem('cart'))
-    if(cartArray.some((item)=>item.id === obj.id && item.owner == obj.owner)){
+    cartArray = JSON.parse(localStorage.getItem('cart')) || []
+    console.log(cartArray)
+    for(let item of cartArray){
+        console.log(item)
+    }
+    if(cartArray.some((item)=>
+    (item.id === obj.id && item.owner == obj.owner)
+    )){
         cartArray.map((item =>{
             if(item.id === obj.id && item.owner == obj.owner){
                 item.count++
