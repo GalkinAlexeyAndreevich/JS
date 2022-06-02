@@ -28,13 +28,16 @@
             <div class="main-title">
                 <h3>Клиенты</h3>
             </div>
-            <div class="table">
+            <div class="preload-div">
+                <img class="preloader" src="./img/preload.svg"></img>
+            </div>
+            <div class="table display-off">
                 <table>
                     <thead>
                         <th class="id">
                             <div class="text-oposit text-titleID ">
                                 <p>ID</p>
-                                <img src="img/arrow_downward.svg" alt="">
+                                <img src="img/true vector.svg" alt="">
                             </div> 
                         </th>
                         <th class="fio">
@@ -46,13 +49,13 @@
                         <th class="fullDateCreate">
                             <div class="text-oposit text-title data">
                                 <p>Дата и время создания</p> 
-                                <img src="img/arrow_downward.svg" alt="">
+                                <img src="img/false vector.svg" alt="">
                             </div>
                         </th>
                         <th class="fullDateChange">
                             <div class="text-oposit text-title data">
                                 <p>Дата и время изменения</p> 
-                                <img src="img/arrow_downward.svg" alt="">
+                                <img src="img/true vector.svg" alt="">
                             </div>
                             
                         </th>
@@ -114,7 +117,7 @@
     <main class="main-footer">
         <div class="container">
             <div class="main-footer-content block-center">
-            <button class="btn btn-add-client">
+            <button class="btn btn-add-client display-off">
                 <img src="img/Vector.svg" alt="" class="img_btn">
                 Добавить клиента
             </button>
@@ -147,10 +150,14 @@
                     </div>
                 </div>
             </div>
-            <div class="add-contacts-div"></div>
-            <button class="btn-form-cont">
-                <img src="img/VectorPL.svg" alt="#"> Добавить контакт
-            </button>
+            <div class="work-contact block-center">
+                <div class="add-contacts-div center-contact">
+                    
+                </div>
+                <button class="btn-form-cont">
+                    <img src="img/VectorPL.svg" alt="#"> Добавить контакт
+                </button>
+            </div>
             <button class="form-btn">Сохранить</button>
             <button class="btn-del-form">Отмена</button>
         </div>
@@ -180,12 +187,16 @@
                     </div>
                 </div>
             </div>
-            <div class="add-contacts-div"></div>
-            <button class="btn-form-cont">
-                <img src="img/VectorPL.svg" alt="#"> Добавить контакт
-            </button>
-            <button class="form-btn change-btn">Сохранить</button>
+            <div class="work-contact">
+                <div class="add-contacts-div center-contact"></div>
+                <button class="btn-form-cont">
+                    <img src="img/VectorPL.svg" alt="#"> Добавить контакт
+                </button>
+            </div>
+            <div class="div-btn-change">
+                <button class="form-btn change-btn">Сохранить</button>
             <button class="btn-del-form">Удалить клиента</button>
+            </div>
         </div>
     </form>
     <form action="#" class="modal3 block-center modal-delete">
@@ -201,5 +212,21 @@
             <button class="btn-del-form">Отмена</button>
         </div>
     </form>
+    <!-- <div class="newContact">
+        <select name="" id="" class="select-contact">
+            <option value="phone">Teлефон</option>
+            <option value="email">Email</option>
+            <option value="facebook">Facebook</option>
+            <option value="vk">VK</option>
+            <option value="other">Другое</option>
+        </select>
+        <input type="text" class="input-contact">
+        <div class="closeContact">
+            <img src="img/Vector (1).svg" alt="">
+        </div>
+    </div> -->
+    <a href="./img/icon/vk.svg">
+        <span class="" data-tippy-content = 'mdds' aria-describedby="tippy-2"></span>
+    </a>
 </body>
 </html>

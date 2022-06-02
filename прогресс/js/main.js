@@ -1,5 +1,19 @@
 import {createUser} from './module/createUser.js'
 import { fillTable } from "./module/fillTable.js";
+import {sortClients} from "./module/sort.js";
+import {contactsForm} from "./module/contactsForm.js";
+import {getFromLocal} from "./module/getFromLocal.js";
+import {changeClient} from "./module/changeClient.js";
+// import {closeForm} from "./module/closeForm.js";
+
+function preloader(){
+    setTimeout(()=>{
+        document.querySelector('.preload-div').style.display = 'none'
+        document.querySelector('.table').classList.remove('display-off')
+        document.querySelector('.btn-add-client').classList.remove('display-off')
+    },1000)
+}
+preloader()
 function forForm(){
     const btnAddUser = document.querySelector(".btn-add-client")
 
@@ -14,59 +28,36 @@ function forForm(){
     const btnAddCont = document.querySelector(".form-btn");
 
     const deleteBtnEnd = formDelete.querySelector(".delete");
-    const changeBtnEnd = formChange.querySelector(".change-btn");
-
-    const divContacts = document.querySelectorAll(".add-contacts-div")
-    const btnAddContacts = document.querySelectorAll(".btn-form-cont")
+    const changeBtnEnd = formChange.querySelector(".change-btn");   
 
 
-    // console.log('Что в итоге', divContact)
-    for(let i=0; i<btnAddContacts.length; i++){
-        btnAddContacts[i].addEventListener('click',()=>{
-            const divContact = document.createElement('div')
-            divContact.classList.add('item-contact')
-            divContact.innerHTML = '1'
-            console.log('нажали', btnAddContacts[i])
-            const allItems = divContacts[i].querySelectorAll('.item-contact')
-            if(allItems){
-                console.log(allItems.length)
-                if(allItems.length > 10){
-                    btnAddContacts[i].style.display = 'none'
-                } 
-            }
 
-            divContacts[i].append(divContact)
+    formAddUser.addEventListener('click',()=>{
+        const closeContacts = document.querySelectorAll(".closeContact")
 
-        })
-    }
-    console.log(changeBtnEnd)
-    const body = document.body
-    function getFromLocal(){
-        let arr = JSON.parse(localStorage.getItem('client'))
-        if(!arr){
-            console.log('локалка пуста')
-            arr = []
-            let obj = {
-                id:0,
-                fio:'Скворцов Денис Юрьевич',
-                // surname:'Скворцов',
-                // name: 'Денис',
-                // postName:'Юрьевич',
-                dataCreate:new Date().toLocaleDateString(),
-                timeCreate:new Date().toLocaleTimeString().slice(0,5),
-                dataChange:new Date().toLocaleDateString(),
-                timeChange:new Date().toLocaleTimeString().slice(0,5),
-                fullDateCreate:new Date(),
-                fullDateChange:new Date()
+        for(let item of closeContacts){
+            item.addEventListener('click', ()=>{
+                console.log('удалить')
+                console.log(item.parentElement)
+                item.parentElement.remove()
+                formAddUser.style.display = 'flex'
+            })
+        } 
+    })
 
-            }
-            arr.push(obj)
-            console.log(arr) 
-            localStorage.setItem('client', JSON.stringify(arr)) 
-        }
-        fillTable(arr)
-    }
+
+    contactsForm()
     getFromLocal()
+
+    // const icons = document.querySelectorAll('.icons')
+    //  for(let icon of icons){
+    //     console.log(icon)
+    //     icon.addEventListener('click',()=>{
+    //         console.log('иконка', icon.querySelector('.contact-text'))
+    //         // icon.querySelector('.contact-text').classList.toggle('display-off')
+    //     })
+        
+    //  }
 
 
     btnAddUser.addEventListener("click", ()=>{
@@ -82,18 +73,11 @@ function forForm(){
         let mass = [formAddUser, formChange, formDelete]
         for(let i = 0; i < cross.length;i++){
             cross[i].addEventListener("click", ()=>{
-                mass[i].style.display = "none"
-                
+                mass[i].style.display = "none"     
             })
             mass[i].addEventListener("click", (e) => {
-                const wind = e.target.closest(".modal__inner");
-              
-                if (!wind) {
-                  mass[i].style.display = "none";
-                  body.classList.remove("noscroll");
-                }
-              });
-
+                if(e.target.closest(".modal__inner")) return
+            });
         }
     }
 
@@ -108,13 +92,16 @@ function forForm(){
         let item = e.target
         let arrItem = item.className.split(' ')
         console.log(item)
+        // Итоговое изменениие
         if(String(item.className).includes('btn-change')){
             console.log('нажали изменить')
             arrItem = item.className.split(' ')
             index = arrItem[arrItem.length-1]
             // console.log(arrItem1[arrItem1.length-1])
             formChange.style.display = 'flex'
+            formChange.querySelector('.text-title').innerHTML = `ID: ${index}`
         }
+        //Окончательное удаление
         if(String(item.className).includes('btn-delete')){
             console.log('нажали удалить')
             arrItem = item.className.split(' ')
@@ -133,30 +120,13 @@ function forForm(){
                 formDelete.style.display = 'none'
         })
         changeBtnEnd.addEventListener('click',()=>{
-            const inputSurname = document.querySelector(".change-surname")
-            const inputName= document.querySelector(".change-name")
-            const inputPostName = document.querySelector(".change-postName")
-
-            let fio = inputSurname.value + ' ' + inputName.value + ' ' + inputPostName.value
-            arr[index].fio = fio
-            arr[index].dataChange = new Date().toLocaleDateString(),
-            arr[index].timeChange = new Date().toLocaleTimeString().slice(0,5),
-            arr[index].fullDateChange = new Date()
-            localStorage.setItem('client', JSON.stringify(arr))
-            fillTable(arr)
-            formChange.style.display = 'none'
+            changeClient(arr, index)
         })
             
 
 
     })
-    function sortClients(arr,prop,dir){
-        const arrClientsCopy = [...arr]
-        return arrClientsCopy.sort(function(clientA, clientB){
-            if(dir?clientA[prop] <  clientB[prop]:clientA[prop] > clientB[prop])
-            return -1
-        })
-    }
+
     let column = 'fio'
     let columnDir = true
     
@@ -165,17 +135,20 @@ function forForm(){
         let arrClientsCopy = [...arrClients]
         arrClientsCopy = sortClients(arrClientsCopy,column,columnDir)
         fillTable(arrClientsCopy)
-
     }
         const allTh = document.querySelectorAll('th')
         for(let item of allTh){
             item.addEventListener('click',()=>{
                 console.log('нажали на ', item)
+                console.log(item.querySelector('img'))
+
                 if(item.className){
                     column =  item.className
-                    // console.log(column)
                     columnDir = !columnDir
                     console.log('направление', columnDir) 
+                    item.querySelector('img').src = `img/${columnDir} vector.svg`
+                    // console.log(column)
+
                     render()
                 }
             })
