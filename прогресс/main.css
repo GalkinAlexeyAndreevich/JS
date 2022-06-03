@@ -410,3 +410,9 @@ tr button{
 tr{
   background:#FFFFFF;
 }
+.closeContact{
+  background: #E7E5EB;
+}
+.error::-webkit-input-placeholder{
+  color:#c52c2c;
+}

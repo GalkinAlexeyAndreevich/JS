@@ -11,9 +11,13 @@ export function createItemContact(){
             <option value="other">Другое</option>
         </select>
         <input type="text" class="input-contact">
-        <div class="closeContact">
-            <img src="img/Vector (1).svg" alt="">
-        </div>
+        <button class="closeContact">
+         <img src="img/closeContact.svg" alt=""> 
+        </button>
+
     `
     return divContact
 }
+{/* <div class="closeContact">
+<img src="img/Rectangle 169.svg" alt="">
+</div> */}

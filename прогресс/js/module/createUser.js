@@ -19,6 +19,10 @@ export function createUser(){
     const surname = formAddUser.querySelector(".surname");
     const name = formAddUser.querySelector(".name");
     const postName = formAddUser.querySelector(".postName");
+    surname.placeholder = 'Введите фамилию'
+    name.placeholder= 'Введите имя '
+    surname.classList.remove('error')
+    name.classList.remove('error')
     let data = new Date().toLocaleDateString()
     let time = new Date().toLocaleTimeString().slice(0,5)
 
@@ -33,7 +37,7 @@ export function createUser(){
         arrContacts.push(contact)
     }
     console.log(arrContacts)
-    if (surname.value && name.value && postName.value) {
+    if (surname.value && name.value) {
         console.log('добавили')
         console.log(arr.length,surname.value, name.value, postName.value,data, time)
         let fio = surname.value + ' ' + name.value + ' ' + postName.value
@@ -65,6 +69,12 @@ export function createUser(){
         //     selectContacts[i].value = 'phone'
         // }
     
+    }
+    else{
+        surname.placeholder = 'Вы не ввели фамилию'
+        name.placeholder= 'Вы не ввели имя '
+        surname.classList.add('error')
+        name.classList.add('error')
     }
     btnOtmena.addEventListener("click", () => {
       formAddUser.style.display = "none";
