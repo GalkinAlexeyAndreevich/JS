@@ -1,0 +1,17 @@
+a{
+    font-size: 10px;
+}
+
+.btns{
+    display: flex;
+}
+.titleComment{
+    font-size: 25px;
+}
+.nameComment{
+    font-size: 17px;
+    font-weight: 700;
+}
+.divComment{
+    padding-left: 30px;
+}
